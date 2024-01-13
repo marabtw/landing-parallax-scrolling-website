@@ -1,0 +1,133 @@
+@import "variables.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: raleway_s;
+  src: url(../fonts/raleway-regular.woff2);
+}
+@font-face {
+  font-family: raleway_s;
+  src: url(../fonts/raleway-black.woff2);
+  font-weight: 900;
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: raleway_s, sans-serif;
+  line-height: 1.5;
+}
+
+.main-header {
+  position: relative;
+  .layers {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    .layers__header {
+      z-index: 2;
+      transform: translate3d(0, calc(var(--scrollTop) / 2), 0);
+			transition: $transition;
+      text-transform: uppercase;
+      will-change: transform;
+      font-weight: 900;
+      color: $text-color;
+      text-shadow: 0 0 15px $text-shadow;
+      margin-top: calc($index * -0.5);
+      .layers__caption {
+        font-size: calc($index / 1.1);
+        letter-spacing: calc($index / 3.5);
+      }
+      .layers__title {
+        font-size: calc($index * 2);
+        letter-spacing: calc($index / 2);
+      }
+    }
+    .layer {
+      height: 100vh;
+      width: 100%;
+      position: absolute;
+      background-size: cover;
+      background-position: center;
+      will-change: transform;
+			transition: $transition;
+    }
+    .layers__base {
+      z-index: 0;
+      transform: translate3d(0, calc(var(--scrollTop) / 1.5), 0);
+    }
+    .layers__miidle {
+      z-index: 1;
+      transform: translate3d(0, calc(var(--scrollTop) / 2.5), 0);
+    }
+    .layers__front {
+      z-index: 3;
+      transform: translate3d(0, calc(var(--scrollTop) / 5), 0);
+    }
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: calc($index * 10);
+    background-image: url(../img/ground.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    bottom: calc($index * -4.5);
+    z-index: 5;
+  }
+}
+
+.main-article {
+  position: relative;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  color: $text-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .main-article__content {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .main-article__header {
+      text-transform: uppercase;
+      font-size: calc($index * 1.8);
+      letter-spacing: calc($index / 7);
+      transform: translate3d(0, calc(var(--scrollTop) / -7.5), 0);
+			transition: $transition;
+      will-change: transform;
+    }
+    .main-article__paragraph {
+      max-width: calc($index * 30);
+      font-size: calc($index * 0.8);
+      transform: translate3d(0, calc(var(--scrollTop) / -7.5), 0);
+			transition: $transition;
+      will-change: transform;
+    }
+    .copy {
+      position: absolute;
+      bottom: calc($index * 2);
+      left: 50%;
+      translate: -50% 0;
+      opacity: 0.5;
+      font-size: calc($index * 0.8);
+    }
+  }
+}
+
+.content{
+	will-change: transform;
+}
